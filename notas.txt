@@ -1,0 +1,39 @@
+https://styde.net/creacion-de-registros-con-tdd/
+Cuando se está desarrollando una aplicación debemos analizar cuáles son las funcionalidades básicas e importantes que debería tener y a partir de allí empezar a desarrollar y en nuestro caso lo haremos usando TDD.
+
+Un Desarrollo guiado por pruebas (TDD) tiene los siguientes pasos:
+
+Analiza y define cómo funcionará el feature que vas a desarrollar estableciendo cuáles pasos debe completar el usuario y qué respuestas o cambios deben suceder en la aplicación.
+Escribe la prueba en función de los pasos definidos, usando PHPUnit y el componente de pruebas de Laravel.
+Ejecuta la prueba con vendor/bin/phpunit ésta por supuesto va a fallar pues aún no hemos escrito nada de código.
+Desarrolla el código que te permita solucionar el error que te apareció como resultado de ejecutar la prueba.
+Vuelve a ejecutar la prueba para verificar que se corrigió el error y la prueba se ha completado éxitosamente.  En caso contrario, la prueba te indicará cuál es el siguiente paso a realizar.
+Repite los pasos 4 y 5 hasta lograr que la prueba se complete éxitosamente.
+Al momento de escribir una prueba puedes estructurarla en tres partes:
+
+Having o teniendo: condiciones iniciales necesarias para poder reproducir el feature.
+When o cuando: acciones que el usuario va a realizar con este feature.
+Then o entonces: resultados esperados del feature luego de ser ejecutado, tales como: cambios en la base de datos, redirección a una ruta, si existen elementos en una vista, notificaciones emitidas, correos enviados, etc.
+En la lección Personalizar el directorio tests de una aplicación de Laravel 5.3 creamos la clase FeatureTestCase.
+
+Para ejecutar un método específico de una prueba puedes usar la opción --filter junto nombre del método:
+
+
+vendor/bin/phpunit --filter test_a_user_create_a_post
+1
+vendor/bin/phpunit --filter test_a_user_create_a_post
+Para esta lección hemos usado los métodos del componente de pruebas de Laravel:
+
+actingAs para autenticar un usuario dado.
+visit para visitar una ruta o URL dado.
+type para escribir algún texto en un campo dado.
+press para hacer clic en un botón con el nombre dado.
+seeInDatabase para evaluar si el registro fue creado correctamente en la base de datos.
+seeInElement para evaluar si un elemento HTML contiene la información especificada. Puedes conocer más de este método en la lección: Métodos de pruebas within y seeInElement de InteractsWithPages en Laravel 5.2
+Comandos usados para crear:
+
+El controlador php artisan make:controller CreatePostsController
+La migración php artisan migration create_posts_table --create=posts
+El modelo php artisan make:model Post
+Si necesitas conocer cómo trabajar con el paquete Styde\Html consulta el tutorial: Creando formularios con el paquete Styde/Html
+
