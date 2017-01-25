@@ -21,4 +21,9 @@ class Post extends Model
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = str_slug($value);
     }
+
+    public function getUrlAttribute()
+    {
+        return route('posts.show', [$this->id, $this->slug]);
+    }
 }
