@@ -5,19 +5,15 @@ class ShowPostTest extends FeatureTestCase
 
     public function test_a_user_can_see_the_post_details()
     {
-        // Having
         $user = $this->defaultUser([
             'name' => 'Alver Grisales',
         ]);
-
-        $this->actingAs($user);
-
-        $post = factory(\App\Post::class)->make([
+        // Having
+        $post = $this->createPost([
             'title' => 'Este es el titulo del post',
             'content' => 'Este es el contenido del post',
-        ]);
-
-        $user->posts()->save($post);
+            'user_id' => $user->id,
+         ]);
 
         // When
         $this->visit($post->url)
@@ -29,13 +25,9 @@ class ShowPostTest extends FeatureTestCase
     public function test_old_urls_are_redirected()
     {
         // Having
-        $user = $this->defaultUser();
-
-        $post = factory(\App\Post::class)->make([
+        $post = $this->createPost([
             'title' => 'Old title',
         ]);
-
-        $user->posts()->save($post);
 
         $url = $post->url;
 
